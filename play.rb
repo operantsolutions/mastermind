@@ -1,7 +1,6 @@
 require './attempt.rb' 
 require './game.rb' 
 require './code.rb' 
-require 'pry-byebug' 
 
 def take_turn_breaker(computer_code, current_game, turns_remaining, past_attempts)
   current_attempt = { :turn => (13 - turns_remaining) }
@@ -43,11 +42,17 @@ def play_mastermind_breaker
   puts "Now it's time to make the game. Who is playing?"
   current_game = Game.new(gets.chomp)
   puts "Excellent. Good luck #{current_game.player}!"
+  sleep 1
   puts "Here are the rules. You have 12 guesses to figure out the computer's secret code."
+  sleep 1
   puts "Each guess you make must include four capital letters ('B', 'Y', 'G', 'R', 'W', or 'P') without spaces."
+  sleep 1
   puts "After each guess, the computer will tell you whether the secret code contained that letter and whether the letter was in the correct place."
+  sleep 1
   puts "An 'X' means you guessed the correct letter in the correct location. A '/' means you had the right letter but it was in the wrong location."
+  sleep 1
   puts "A '__' means the secret code does not contain that letter."
+  sleep 1
   puts "If you guess the secret code exactly within 12 turns, you win! Let's get started."
 
   13.times do 
@@ -140,6 +145,3 @@ elsif game_mode == "MAKE"
 else
   puts "GAME MODE ERROR"
 end
-
-
-  
