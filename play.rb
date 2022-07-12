@@ -5,6 +5,7 @@ require 'pry-byebug'
 
 def take_turn(computer_code, current_game, turns_remaining, past_attempts)
   current_attempt = { :turn => (13 - turns_remaining) }
+  puts "\n \n"
   puts "You have #{turns_remaining} turns left."
   puts "Enter your guess."
   current_attempt[:guess] = Attempt.new(gets.chomp).guess
@@ -26,7 +27,7 @@ def take_turn(computer_code, current_game, turns_remaining, past_attempts)
     puts "You win! You guessed the secret code!"
   else
     puts "Here is the outcome of your guess:"
-    puts current_attempt[:outcome]
+    print "#{current_attempt[:outcome]}\n"
     past_attempts.push(current_attempt)
   end
 
@@ -51,14 +52,16 @@ def play_mastermind
   puts "A '__' means the secret code does not contain that letter."
   puts "If you guess the secret code exactly within 12 turns, you win! Let's get started."
 
-  12.times do 
+  13.times do 
     if (turns_remaining > 0 && current_game.is_over == false)
       take_turn(computer_code, current_game, turns_remaining, past_attempts)
       turns_remaining -= 1
-    else
-      puts "The game is over."
+    elsif (turns_remaining == 0 && current_game.is_over == false)
+      puts "You lost."
     end
   end
+
+  return "The game is over."
 
 end
 
