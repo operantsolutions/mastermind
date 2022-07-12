@@ -15,19 +15,19 @@ def take_turn(computer_code, current_game, turns_remaining, past_attempts)
   sleep 1
   current_attempt[:guess].each_with_index do |char, index|
     if char == computer_code.secret_code[index]
-      current_attempt[:outcome][index] = "X"
+      current_attempt[:outcome][index] = " X "
     elsif computer_code.secret_code.include?(char)
-      current_attempt[:outcome][index] = "/"
+      current_attempt[:outcome][index] = " / "
     else  
-      current_attempt[:outcome][index] = "__"
+      current_attempt[:outcome][index] = " __ "
     end
   end
-  if current_attempt[:outcome].all?("X")
+  if current_attempt[:outcome].all?(" X ")
     current_game.is_over = true 
     puts "You win! You guessed the secret code!"
   else
     puts "Here is the outcome of your guess:"
-    print "#{current_attempt[:outcome]}\n"
+    print "#{current_attempt[:outcome].sort.join("")}\n"
     past_attempts.push(current_attempt)
   end
 
